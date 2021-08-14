@@ -1,0 +1,11 @@
+{
+  "name": "study-app",
+  "version": "1.0.0",
+  "description": "Study checking application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel",
+  "license": "MIT"
+}
