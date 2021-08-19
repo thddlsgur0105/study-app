@@ -30,9 +30,9 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 
 ## userRouter --> __Done__
 
-[x] /users/profile -> See My Profile
-[x] /users/edit -> Edit My Profile
-[x] /users/delete -> Delete User
+[x] /users/:id/profile -> See User Profile
+[x] /users/:id/edit -> Edit My Profile
+[x] /users/:id/delete -> Delete User
 
 ## apiRouter --> __차후에 라우터 & 컨트롤러 만들기__
 
@@ -42,6 +42,24 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 
 ----------------------------------------------------------------
 
+# Controller
+
+[o] / -> Room Controller
+[o] /login -> User Controller
+[o] /join -> User Controller
+[o] /logout -> User Controller
+[o] /create -> Room Controller
+
+[o] /rooms/:id -> Room Controller
+[o] /rooms/:id/edit -> Room Controller
+[o] /rooms/:id/delete -> Room Controller
+
+[o] /users/profile -> User Controller
+[o] /users/edit -> User Controller
+[o] /users/delete -> User Controller
+
+
+----------------------------------------------------------------
 
 # Model
 

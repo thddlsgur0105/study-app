@@ -1,11 +1,12 @@
 import express from "express";
+import { detail, edit, remove } from "../Controllers/roomController";
 
 const roomRouter = express.Router();
 
-roomRouter.get("/:id", (req, res) => res.send("Room Detail!"));
+roomRouter.get("/:id", detail);
 
-roomRouter.get("/:id/edit", (req, res) => res.send("Edit Room Detail!"));
+roomRouter.get("/:id/edit", edit);
 
-roomRouter.get("/:id/delete", (req, res) => res.send("Delete Room!"));
+roomRouter.get("/:id/delete", remove);
 
 export default roomRouter;
