@@ -14,7 +14,7 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 
 # Router
 
-## globalRouter
+## rootRouter --> __Done__ 
 
 [o] / -> Home -> Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 [o] /login -> Login
@@ -22,19 +22,19 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 [o] /logout -> Logout
 [o] /create -> Create Room
 
-## roomRouter
+## roomRouter --> __Done__
 
 [o] /rooms/:id -> Watch Room
 [x] /rooms/:id/edit -> Edit Room
 [x] /rooms/:id/delete -> Delete Room
 
-## userRouter
+## userRouter --> __Done__
 
 [x] /users/profile -> See My Profile
 [x] /users/edit -> Edit My Profile
 [x] /users/delete -> Delete User
 
-## apiRouter
+## apiRouter --> __차후에 라우터 & 컨트롤러 만들기__
 
 [o] /api/join -> Join Study
 [x] /api/view -> views = views + 1
