@@ -16,28 +16,29 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 
 ## globalRouter
 
-/ -> Home -> Search 랑 Hashtag 로 검색하면 관련 post 모아보기
-/login -> Login
-/join -> Join
-/logout -> Logout
+[o] / -> Home -> Search 랑 Hashtag 로 검색하면 관련 room 모아보기
+[o] /login -> Login
+[o] /join -> Join
+[o] /logout -> Logout
+[o] /create -> Create Room
 
 ## roomRouter
 
-/rooms/create -> Create Room
-/rooms/:id -> Watch Room
-/rooms/:id/edit -> Edit Room
-/rooms/:id/delete -> Delete Room
+[o] /rooms/:id -> Watch Room
+[x] /rooms/:id/edit -> Edit Room
+[x] /rooms/:id/delete -> Delete Room
 
 ## userRouter
 
-/users/profile -> See My Profile
-/users/edit -> Edit My Profile
-/users/delete -> Delete User
+[x] /users/profile -> See My Profile
+[x] /users/edit -> Edit My Profile
+[x] /users/delete -> Delete User
 
 ## apiRouter
 
-/api/join -> Join Study
-/api/view -> views = views + 1
+[o] /api/join -> Join Study
+[x] /api/view -> views = views + 1
+[x] /api/users/:id/remove -> 특정 user remove
 
 ----------------------------------------------------------------
 
@@ -51,19 +52,20 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
     password: { type: String, required: true },
     name: { type: String, required: true },
     location: String,
-    studies: [{ type: ObjectId, ref: Study }]
+    studies: [{ type: ObjectId, ref: Study }],
+    rooms: [{ type: ObjectId, ref: Room }]
 }
 
 ## Room Schema {
     _id: {...},
-    title: { type: String, required: true },
-    author: { type: String, required: true },
-    comments: [{ type: ObjectId, ref: Comment }],
-    createdAt: { type: Date, default: Date.now },
-    hashtags: [{ type: String }],
-    friends: [{ type: ObjectId, ref: User }],
+    title: { type: String, required: true }, --- 변경 가능
+    author: { type: String, required: true }, --- x
+    comments: [{ type: ObjectId, ref: Comment }], --- 
+    createdAt: { type: Date, default: Date.now }, --- x
+    hashtags: [{ type: String }], --- 변경 가능
+    users: [{ type: ObjectId, ref: User }], --- 변경 가능 -> 방장이 필요 시 유저 제거할 수 있는 기능
     meta: {
-        views: Number,
+        views: Number, --- x
     }
 }
 
@@ -71,9 +73,85 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 
 ## Study Schema {
     _id: {...},
-    target: { type: ObjectId, ref: Room },
+    author: { type: String, required: true },
+    targetRoom: { type: ObjectId, ref: Room },
     createdAt: { type: Date, default: Date.now },
-    startTime: { type: Date },
-    startLunch: { type: Date },
-    
+    durations: [{ type: Number }],
+    totalTime: { type: Number, default: 0 },
 }
+
+
+----------------------------------------------------------------
+
+
+1. Home page
+
+Search 랑 Hashtag 로 검색하면 관련 room 모아보기
+
+-> 전체 rooms 보여주기
+-> hashtag btn sumbit -> GET method 방식 backend 로 req.query 전송 -> rooms update 후 pug template 로 updated rooms rendering
+-> search input sumbit -> GET method 방식 backend 로 req.query 전송 -> rooms update 후 pug template 로 updated rooms rendering 
+
+
+----------------------------------------------------------------
+
+2. Login page
+
+-> base.pug template 에서 anchor tag 로 /login 으로의 login btn
+-> GET method 로 /login 이동 -> template 통해 form 작성 -> POST method 로 /login 이동 -> form data 정보 user authentication
+-> mongoDB 
+-> Done login
+
+
+----------------------------------------------------------------
+
+
+3. Join page
+
+-> base.pug template 에서 anchor tag 로 /join 으로의 join btn
+-> GET method 로 /join 이동 -> template 통해 form 작성 -> POST method 로 /join 이동 -> form data 정보 user authentication
+-> mongoDB 
+-> Done join
+
+
+----------------------------------------------------------------
+
+4. Log out 
+
+-> base.pug template 에서 anchor tag 로 /logout 으로의 logout btn
+-> GET method 로 /logout 이동 -> session destroy -> redirect /
+
+
+----------------------------------------------------------------
+
+
+5. Create Room
+
+-> base.pug template 에서 anchor tag 로 /create 으로의 create btn
+-> GET method 로 /create 이동 -> templace 통해 form 작성 -> POST method 로 /create 이동 
+-> form data 로 mongoDB database 에 one document 생성
+-> redirect /
+
+
+----------------------------------------------------------------
+
+
+6. Watch Room
+
+-> Home page 에서 mixins 활용 container 클릭 시 /rooms/:id 특정 anchor 로 이동
+-> GET method 에서 req.params 의 id 로 database 에서 document 발견 -> pug template 에 room 관련 form data rendering
+-> Join Study btn 생성 후 클릭 시 /api/join 으로 frontend 단의 fetch 활용
+-> POST 방식의 fetch 활용해서 api 사용
+-> api : Room model users 에 user objectId push & User model rooms 에 room objectId push
+
+
+----------------------------------------------------------------
+
+
+7. Edit Room
+
+-> /rooms/:id 에 ./edit 을 통해 /rooms/:id/edit 로 이동하는 anchor btn 생성
+-> GET method 로 req.params 의 id 로 database 에서 document 발견 -> pug template 에 기존 data 를 input value 로 설정
+-> 변경 가능 정보 : title 수정 & users 삭제
+-> room 관련 전체 정보를 pug template 으로 보여주고 title 은 input value로 설정해서 수정가능하게
+-> __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user

@@ -1,11 +1,27 @@
 {
   "name": "study-app",
   "version": "1.0.0",
-  "description": "Study checking application",
-  "main": "index.js",
+  "description": "Study App",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --exec babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thddlsgur0105/study-app.git"
   },
   "author": "Daniel",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thddlsgur0105/study-app/issues"
+  },
+  "homepage": "https://github.com/thddlsgur0105/study-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "nodemon": "^2.0.12"
+  }
 }
