@@ -1,12 +1,14 @@
 export const login = (req, res) => {
-    return res.send("Login!");
+    return res.render("login", { pageTitle: "로그인" });
 }
 
 export const join = (req, res) => {
-    return res.send("Join!");
+    return res.render("join", { pageTitle: "회원가입" });
 }
 
 export const logout = (req, res) => {
+    // destroy session
+    // redirect to Home
     return res.send("Log Out!");
 }
 

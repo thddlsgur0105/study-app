@@ -11,6 +11,9 @@ const PORT = 4000;
 // third party middleware
 app.use(morgan("dev"));
 
+app.set("views", "src/views");
+app.set("view engine", "pug");
+
 app.use("/", rootRouter);
 app.use("/rooms", roomRouter);
 app.use("/users", userRouter);
