@@ -17,21 +17,21 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 ## rootRouter --> __Done__ 
 
 [o] / -> Home -> Search 랑 Hashtag 로 검색하면 관련 room 모아보기
-[o] /login -> Login
-[o] /join -> Join
+[o] /login -> Login -> __form__
+[o] /join -> Join -> __form__
 [o] /logout -> Logout
-[o] /create -> Create Room
+[o] /create -> Create Room -> __form__
 
 ## roomRouter --> __Done__
 
 [o] /rooms/:id -> Watch Room
-[x] /rooms/:id/edit -> Edit Room
+[x] /rooms/:id/edit -> Edit Room -> __form__
 [x] /rooms/:id/delete -> Delete Room
 
 ## userRouter --> __Done__
 
 [x] /users/:id/profile -> See User Profile
-[x] /users/:id/edit -> Edit My Profile
+[x] /users/:id/edit -> Edit My Profile -> __form__
 [x] /users/:id/delete -> Delete User
 
 ## apiRouter --> __차후에 라우터 & 컨트롤러 만들기__
@@ -69,7 +69,6 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     name: { type: String, required: true },
-    location: String,
     studies: [{ type: ObjectId, ref: Study }],
     rooms: [{ type: ObjectId, ref: Room }]
 }
@@ -173,3 +172,5 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 -> 변경 가능 정보 : title 수정 & users 삭제
 -> room 관련 전체 정보를 pug template 으로 보여주고 title 은 input value로 설정해서 수정가능하게
 -> __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user
+
+----------------------------------------------------------------

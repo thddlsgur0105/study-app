@@ -10,6 +10,9 @@ const PORT = 4000;
 
 // third party middleware
 app.use(morgan("dev"));
+app.use(express.urlencoded({
+    extended: true
+}));
 
 app.set("views", "src/views");
 app.set("view engine", "pug");

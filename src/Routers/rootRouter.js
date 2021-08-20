@@ -1,6 +1,6 @@
 import express from "express";
 import { create, home } from "../Controllers/roomController";
-import { join, login, logout } from "../Controllers/userController";
+import { getJoin, login, logout, postJoin } from "../Controllers/userController";
 
 const rootRouter = express.Router();
 
@@ -8,7 +8,7 @@ rootRouter.get("/", home);
 
 rootRouter.get("/login", login);
 
-rootRouter.get("/join", join);
+rootRouter.route("/join").get(getJoin).post(postJoin);
 
 rootRouter.get("/logout", logout);
 

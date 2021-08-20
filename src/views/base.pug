@@ -8,17 +8,7 @@ html(lang="en")
         link(rel="stylesheet", href="https://unpkg.com/mvp.css")
         title #{pageTitle} | Study  
     body 
-        header
-            h1=pageTitle 
-            nav 
-                ul 
-                    li 
-                        a(href="/") 홈
-                    li 
-                        a(href="/login") 로그인 
-                    li 
-                        a(href="/logout") 로그아웃
+        include partials/header.pug
         main 
             block content
-        footer
-            span &copy; #{new Date().getFullYear()} StudyApp
+        include partials/footer.pug
