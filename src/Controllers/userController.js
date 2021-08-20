@@ -1,5 +1,11 @@
-export const login = (req, res) => {
+import User from "../Model/User";
+
+export const getLogin = (req, res) => {
     return res.render("login", { pageTitle: "로그인" });
+}
+
+export const postLogin = (req, res) => {
+    return res.end();
 }
 
 // postLogin
@@ -12,10 +18,27 @@ export const getJoin = (req, res) => {
     return res.render("join", { pageTitle: "회원가입" });
 }
 
-export const postJoin = (req, res) => {
-    const { name, email, username, password } = req.body;
-    // mongo database 에 정보 저장
-    // redirect to login page
+export const postJoin = async (req, res) => {
+    const { name, email, username, password, password2 } = req.body;
+    // password confirmation
+    if (password !== password2) {
+        return res.render("join", { pageTitle: "회원가입", errorMessage: "패스워드가 일치하지 않습니다." })
+    }
+    // email & username confirmation
+    const exists = await User.exists({
+        $or: [{ email }, { username }]
+    })
+    if (exists) {
+        return res.render("join", { pageTitle: "회원가입", errorMessage: "이메일 혹은 유저이름이 이미 존재합니다." })
+    }
+    
+    await User.create({
+        name,
+        email,
+        username,
+        password,
+    });
+    return res.redirect("/login");
 }
 
 export const logout = (req, res) => {

@@ -71,7 +71,7 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
     name: { type: String, required: true },
     studies: [{ type: ObjectId, ref: Study }],
     rooms: [{ type: ObjectId, ref: Room }]
-}
+} --> __Done__
 
 ## Room Schema {
     _id: {...},
@@ -84,7 +84,7 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
     meta: {
         views: Number, --- 변경 불가
     }
-}
+} --> __Done__
 
 ## Comment
 
@@ -95,7 +95,7 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
     createdAt: { type: Date, default: Date.now },
     durations: [{ type: Number }],
     totalTime: { type: Number, default: 0 },
-}
+} --> __Done__
 
 
 ----------------------------------------------------------------
@@ -175,4 +175,6 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 
 ----------------------------------------------------------------
 
-## mongoDB 서버 연결 필요
+
+1. 우선 회원가입 로그인 흐름 만들고
+2. 패스워드 암호화 과정 순서로
