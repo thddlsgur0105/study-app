@@ -76,13 +76,13 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 ## Room Schema {
     _id: {...},
     title: { type: String, required: true }, --- 변경 가능
-    author: { type: String, required: true }, --- x
+    author: { type: String, required: true }, --- 변경 불가
     comments: [{ type: ObjectId, ref: Comment }], --- 
-    createdAt: { type: Date, default: Date.now }, --- x
+    createdAt: { type: Date, default: Date.now }, --- 변경 불가
     hashtags: [{ type: String }], --- 변경 가능
     users: [{ type: ObjectId, ref: User }], --- 변경 가능 -> 방장이 필요 시 유저 제거할 수 있는 기능
     meta: {
-        views: Number, --- x
+        views: Number, --- 변경 불가
     }
 }
 
@@ -174,3 +174,5 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 -> __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user
 
 ----------------------------------------------------------------
+
+## mongoDB 서버 연결 필요
