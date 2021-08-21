@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const roomSchema = new mongoose.Schema({
     title: { type: String, required: true }, 
-    author: { type: String, required: true }, 
+    author: { type: String, required: true },
+    content: { type: String, required: true },
     comments: [{ type: mongoose.ObjectId, ref: "Comment" }],
     createdAt: { type: Date, default: Date.now }, 
     hashtags: [{ type: String }], 

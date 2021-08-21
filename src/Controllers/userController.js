@@ -58,7 +58,7 @@ export const profile = (req, res) => {
     return res.render("profile", { pageTitle: "유저 세부정보" });
 }
 
-export const edit = (req, res) => {
+export const getEdit = (req, res) => {
     return res.render("editUser", { pageTitle: "유저 세부정보 수정" });
 }
 

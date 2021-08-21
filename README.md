@@ -112,7 +112,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 
 ----------------------------------------------------------------
 
-2. Login page
+2. Login page --> __Done__
 
 -> base.pug template 에서 anchor tag 로 /login 으로의 login btn
 -> GET method 로 /login 이동 -> template 통해 form 작성 -> POST method 로 /login 이동 -> form data 정보 user authentication
@@ -123,7 +123,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 ----------------------------------------------------------------
 
 
-3. Join page
+3. Join page --> __Done__
 
 -> base.pug template 에서 anchor tag 로 /join 으로의 join btn
 -> GET method 로 /join 이동 -> template 통해 form 작성 -> POST method 로 /join 이동 -> form data 정보 user authentication
@@ -133,7 +133,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 
 ----------------------------------------------------------------
 
-4. Log out 
+4. Log out --> __Done__
 
 -> base.pug template 에서 anchor tag 로 /logout 으로의 logout btn
 -> GET method 로 /logout 이동 -> session destroy -> redirect /
