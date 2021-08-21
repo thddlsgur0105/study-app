@@ -1,12 +1,24 @@
 import User from "../Model/User";
+import bcrypt from "bcrypt";
 
 export const getLogin = (req, res) => {
     return res.render("login", { pageTitle: "로그인" });
 }
 
-export const postLogin = (req, res) => {
+export const postLogin = async (req, res) => {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    if (!user) {
+        return res.render("login", { pageTitle: "로그인", errorMessage: "해당 유저가 존재하지 않습니다." })
+    }
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+        return res.render("login", { pageTitle: "로그인", errorMessage: "패스워드가 일치하지 않습니다." })
+    }
+    // login success!
+    
     return res.end();
-}
+};
 
 // postLogin
 // mongo database 정보와 비교해서 유저 정보 일치 확인
@@ -24,6 +36,7 @@ export const postJoin = async (req, res) => {
     if (password !== password2) {
         return res.render("join", { pageTitle: "회원가입", errorMessage: "패스워드가 일치하지 않습니다." })
     }
+
     // email & username confirmation
     const exists = await User.exists({
         $or: [{ email }, { username }]
@@ -36,7 +49,7 @@ export const postJoin = async (req, res) => {
         name,
         email,
         username,
-        password,
+        password: await bcrypt.hash(password, 10),
     });
     return res.redirect("/login");
 }
