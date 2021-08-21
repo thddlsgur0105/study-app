@@ -10,7 +10,9 @@ html(lang="en")
     body 
         include partials/header.pug
         main 
-            if errorMessage 
+            if statusMessage 
+                span=statusMessage 
+            if errorMessage
                 span=errorMessage 
             block content
         include partials/footer.pug

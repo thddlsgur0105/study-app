@@ -9,22 +9,17 @@ export const postLogin = async (req, res) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     if (!user) {
-        return res.render("login", { pageTitle: "로그인", errorMessage: "해당 유저가 존재하지 않습니다." })
+        return res.status(403).render("login", { pageTitle: "로그인", errorMessage: "해당 유저가 존재하지 않습니다." })
     }
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-        return res.render("login", { pageTitle: "로그인", errorMessage: "패스워드가 일치하지 않습니다." })
+        return res.status(403).render("login", { pageTitle: "로그인", errorMessage: "패스워드가 일치하지 않습니다." })
     }
     // login success!
-    
-    return res.end();
+    req.session.loggedIn = true;
+    req.session.user = user;
+    return res.redirect("/");
 };
-
-// postLogin
-// mongo database 정보와 비교해서 유저 정보 일치 확인
-// 일치한다면 req.session 에 user, loggedIn 정보 저장
-// middleware.js 를 이용해서 res.locals = req.session...  이용해서 pug template에 적용 
-// home 으로 이동
 
 export const getJoin = (req, res) => {
     return res.render("join", { pageTitle: "회원가입" });
@@ -34,7 +29,7 @@ export const postJoin = async (req, res) => {
     const { name, email, username, password, password2 } = req.body;
     // password confirmation
     if (password !== password2) {
-        return res.render("join", { pageTitle: "회원가입", errorMessage: "패스워드가 일치하지 않습니다." })
+        return res.status(403).render("join", { pageTitle: "회원가입", errorMessage: "패스워드가 일치하지 않습니다." })
     }
 
     // email & username confirmation
@@ -42,7 +37,7 @@ export const postJoin = async (req, res) => {
         $or: [{ email }, { username }]
     })
     if (exists) {
-        return res.render("join", { pageTitle: "회원가입", errorMessage: "이메일 혹은 유저이름이 이미 존재합니다." })
+        return res.status(403).render("join", { pageTitle: "회원가입", errorMessage: "이메일 혹은 유저이름이 이미 존재합니다." })
     }
     
     await User.create({
@@ -54,10 +49,9 @@ export const postJoin = async (req, res) => {
     return res.redirect("/login");
 }
 
-export const logout = (req, res) => {
-    // destroy session
-    // redirect to Home
-    return res.send("Log Out!");
+export const logout = async (req, res) => {
+    await req.session.destroy();
+    return res.redirect("/");
 }
 
 export const profile = (req, res) => {
