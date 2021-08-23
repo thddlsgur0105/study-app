@@ -1,4 +1,6 @@
 extends base.pug
+include mixins/roompreview.pug
 
 block content
-    span 홈
+    each room in rooms 
+        +roomPreview(room)

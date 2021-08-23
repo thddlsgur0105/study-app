@@ -1,0 +1,9 @@
+mixin roomPreview(room)
+    div 
+        a(href=`/rooms/${room._id}`)=room.title
+        br
+        small=room.author.username 
+        br 
+        small=room.createdAt 
+        hr
+    

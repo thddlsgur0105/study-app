@@ -1,4 +1,5 @@
 extends base.pug
+include mixins/roomDetail.pug
 
 block content 
-    span 스터디 세부 정보
+    +roomDetail(room)
