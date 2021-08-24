@@ -43,7 +43,8 @@ export const postCreate = async (req, res) => {
 
 export const detail = async (req, res) => {
     const { id } = req.params;
-    const room = await Room.findById(id).populate("author").populate("members");
+    const room = await Room.findById(id).populate("author").populate("study");
+    console.log(Array.isArray(room.study.members));
     return res.render("watchRoom", { pageTitle: `세부정보: ${room.title}`, room });
 }
 
@@ -87,4 +88,10 @@ export const remove = async (req, res) => {
     }
     await Room.findByIdAndRemove(id);
     return res.redirect("/");
+}
+
+// Study Model
+
+export const studyDetail = (req, res) => {
+    return res.send("Study Detail!");
 }

@@ -36,9 +36,14 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 
 ## apiRouter --> __차후에 라우터 & 컨트롤러 만들기__
 
-[o] /api/join -> Join Study
+[o] /api/:id/join -> :id 인 Study 로 Join
 [x] /api/view -> views = views + 1
 [x] /api/users/:id/remove -> 특정 user remove
+
+## studyRouter
+
+[x] /studies/:id -> Watch my study room
+
 
 ----------------------------------------------------------------
 
@@ -172,6 +177,18 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 -> 변경 가능 정보 : title 수정 & users 삭제
 -> room 관련 전체 정보를 pug template 으로 보여주고 title 은 input value로 설정해서 수정가능하게
 -> __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user
+
+----------------------------------------------------------------
+
+8. Watch StudyRoom
+
+-> /rooms/:id 에서 anchor 통해 studyRoom 으로 이동
+-> frontend 에서는 api 통해 btn click 시 fetch를 통해 특정 room과 연결된 study의 member list에 currentUser _id 추가
+-> if currentUser is member 이면 참여 취소 btn 으로 변경
+-> else 참여하기 btn 그대로 유지
+-> member 가 공부 post 를 업로드 할 수 있는 anchor btn
+-> 전체 members 의 공부 기록을 표시하는 graph? -> __추가적인 라이브러리 필요__
+-> post 를 해당 날짜에 upload 할 수 있는 기능 
 
 ----------------------------------------------------------------
 

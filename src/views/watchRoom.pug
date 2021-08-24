@@ -1,13 +1,15 @@
 extends base.pug
 
-block content 
-    a(href="#") 참여하기
+block content
+    //- /api/${room.study._id}/join 으로 POST fetch 
+    button 참여하기
+    if room.study.members.includes(loggedInUser._id)
+        a(href=`/studies/${room.study._id}`) 바로 가기 
     textarea(disabled, cols="30", rows="10")=room.content
     h4=room.author.username
     h4=room.hashtags
     h4=room.createdAt
-    each member in room.members
-        h4=member.username  
+    h4=`${room.study.members.length}명 참여중`
     if String(room.author._id) === String(loggedInUser._id) 
         a(href=`${room._id}/edit`) 스터디 편집 &rarr;   
         a(href=`${room._id}/delete`) 스터디 삭제 &rarr; 
