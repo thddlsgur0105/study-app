@@ -9,6 +9,7 @@ import roomRouter from "./src/Routers/roomRouter";
 import rootRouter from "./src/Routers/rootRouter";
 import userRouter from "./src/Routers/userRouter";
 import { localsMiddleware } from "./src/middlewares";
+import studyRouter from "./src/Routers/studyRouter";
 
 const app = express();
 const PORT = 4000;
@@ -32,6 +33,7 @@ app.set("view engine", "pug");
 app.use("/", rootRouter);
 app.use("/rooms", roomRouter);
 app.use("/users", userRouter);
+app.use("/studies", studyRouter);
 
 app.listen(PORT, () => {
     console.log(`✅ Example app listening at http://localhost:${PORT}`);

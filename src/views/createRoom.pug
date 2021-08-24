@@ -3,6 +3,12 @@ extends base.pug
 block content 
     form(method="POST")
         input(type="text", placeholder="제목", name="title", required)
-        input(type="text", placeholder="해시태그", name="hashtags")
+        div 
+            input(type="radio", id="toeic", name="filtering", value="toeic")
+            label(for="toeic") 토익
+            input(type="radio", id="official", name="filtering", value="official")
+            label(for="official") 공시
+            input(type="radio", id="self", name="filtering", value="self")
+            label(for="self") 자율
         textarea(placeholder="내용을 입력하세요.", cols="30", rows="10", name="content", required)
         input(type="submit", value="스터디 생성")

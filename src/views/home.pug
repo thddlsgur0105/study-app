@@ -4,3 +4,5 @@ include mixins/roompreview.pug
 block content
     each room in rooms 
         +roomPreview(room)
+    else 
+        h2="스터디가 없습니다."

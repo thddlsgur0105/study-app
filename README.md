@@ -142,7 +142,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 ----------------------------------------------------------------
 
 
-5. Create Room
+5. Create Room --> __Done__
 
 -> base.pug template 에서 anchor tag 로 /create 으로의 create btn
 -> GET method 로 /create 이동 -> templace 통해 form 작성 -> POST method 로 /create 이동 
@@ -153,11 +153,11 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 ----------------------------------------------------------------
 
 
-6. Watch Room
+1. Watch Room
 
 -> Home page 에서 mixins 활용 container 클릭 시 /rooms/:id 특정 anchor 로 이동
 -> GET method 에서 req.params 의 id 로 database 에서 document 발견 -> pug template 에 room 관련 form data rendering
--> Join Study btn 생성 후 클릭 시 /api/join 으로 frontend 단의 fetch 활용
+-> __Join Study btn 생성 후 클릭 시 /api/join 으로 frontend 단의 fetch 활용__
 -> POST 방식의 fetch 활용해서 api 사용
 -> api : Room model users 에 user objectId push & User model rooms 에 room objectId push
 
@@ -174,3 +174,21 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 -> __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user
 
 ----------------------------------------------------------------
+
+## 남은 과정
+
+1. userController 
+   1. profile
+   2. edit
+   3. remove
+2. homepage
+   1. search input -> query args 활용 GET method
+   2. filtering btn -> frontend api 전송 -> ??
+3. watchRoom
+   1. __Join Study btn 생성 후 클릭 시 /api/join 으로 frontend 단의 fetch 활용__
+   2. -> POST 방식의 fetch 활용해서 api 사용
+   3. -> api : Room model users 에 user objectId push & User model rooms 에 room objectId push
+4. 공부하는 studyroom 생성
+   1. createRoom 시 studyRoom 생성
+5. editRoom
+   1. __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user

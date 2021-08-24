@@ -6,8 +6,8 @@ const roomSchema = new mongoose.Schema({
     content: { type: String, required: true },
     comments: [{ type: mongoose.ObjectId, ref: "Comment" }],
     createdAt: { type: Date, default: Date.now }, 
-    hashtags: [{ type: String }], 
-    members: [{ type: mongoose.ObjectId, ref: "User" }],
+    filtering: { type: String, required: true }, 
+    study: { type: mongoose.ObjectId, ref: "Study" },
     meta: {
         views: Number, 
     }

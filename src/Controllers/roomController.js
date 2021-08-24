@@ -1,4 +1,5 @@
 import Room from "../Model/Room";
+import Study from "../Model/Study";
 import User from "../Model/User";
 
 export const home = async (req, res) => {
@@ -8,38 +9,82 @@ export const home = async (req, res) => {
 
 export const getCreate = (req, res) => {
     if (!req.session.loggedIn) {
-        return res.status(403).redirect("/");
+        return res.redirect("/");
     }
     return res.render("createRoom", { pageTitle: "스터디 생성" });
 }
 
 export const postCreate = async (req, res) => {
-    const { body: { title, hashtags, content }, session: { user } } = req;
+    const { body: { title, filtering, content }, session: { user } } = req;
     const currentUser = await User.findById(user._id);
     if (!currentUser) {
-        return res.status(401).redirect("/");
+        return res.redirect("/");
     }
-    await Room.create({
-        title,
-        author: currentUser._id,
-        content,
-        hashtags: hashtags.split(",").map(one => one.startsWith("#") ? one : `#${one}`),
-        members: currentUser._id,
-    })
-    // redirect to home
-    return res.status(200).redirect("/");
+    try {
+        const study = await Study.create({
+            title,
+            author: currentUser._id,
+            members: currentUser._id,
+        });
+        await Room.create({
+            title,
+            author: currentUser._id,
+            content,
+            filtering,
+            study: study._id,
+        })
+        // redirect to home
+        return res.redirect("/");
+    } catch(error) {
+        console.log(error);
+        return res.status(400).render("createRoom", { pageTitle: "스터디 생성", errorMessage: "스터디 생성에 실패하였습니다." })
+    }
 }
 
 export const detail = async (req, res) => {
     const { id } = req.params;
     const room = await Room.findById(id).populate("author").populate("members");
-    return res.render("watchRoom", { pageTitle: room.title, room });
+    return res.render("watchRoom", { pageTitle: `세부정보: ${room.title}`, room });
 }
 
-export const getEdit = (req, res) => {
-    return res.render("editRoom", { pageTitle: "스터디 세부정보" });
+export const getEdit = async (req, res) => {
+    const { params: { id }, session: { user } } = req;
+    const room = await Room.findById(id);
+    if (!room) {
+        return res.redirect("/");
+    }
+    if (String(room.author) !== String(user._id)) {
+        return res.redirect("/");
+    }
+    return res.render("editRoom", { pageTitle: `편집: ${room.title}`, room });
 }
 
-export const remove = (req, res) => {
-    return res.send("Delete Room!");
+export const postEdit = async (req, res) => {
+    const { params: { id }, session: { user }, body: { title, content, filtering } } = req;
+    const room = await Room.findById(id);
+    if (!room) {
+        return res.redirect("/")
+    }
+    if (String(room.author) !== String(user._id)) {
+        return res.redirect("/");
+    }
+    await Room.findByIdAndUpdate(id, {
+        title,
+        content,
+        filtering,
+    })
+    return res.redirect("/");
+}
+
+export const remove = async (req, res) => {
+    const { params: { id }, session: { user } } = req;
+    const room = await Room.findById(id);
+    if (!room) {
+        return res.redirect("/")
+    }
+    if (String(room.author) !== String(user._id)) {
+        return res.redirect("/");
+    }
+    await Room.findByIdAndRemove(id);
+    return res.redirect("/");
 }

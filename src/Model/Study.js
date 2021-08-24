@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 const studySchema = new mongoose.Schema({
-    author: { type: String, required: true },
-    targetRoom: { type: mongoose.ObjectId, ref: "Room" },
+    title: { type: String, required: true }, 
+    author: { type: mongoose.ObjectId, required: true, ref: "User" },
+    members: [{ type: mongoose.ObjectId, ref: "User" }],
     createdAt: { type: Date, default: Date.now },
-    durations: [{ type: Number }],
-    totalTime: { type: Number, default: 0 },
-});
+    posts: [{ type: mongoose.ObjectId, ref: "Post" }]
+})
 
 const Study = mongoose.model("Study", studySchema);
 
