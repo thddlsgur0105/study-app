@@ -54,8 +54,13 @@ export const logout = async (req, res) => {
     return res.redirect("/");
 }
 
-export const profile = (req, res) => {
-    return res.render("profile", { pageTitle: "유저 세부정보" });
+export const profile = async (req, res) => {
+    const { params: { id }, session: { user } } = req;
+    const currentUser = await User.findById(id).populate("studies");
+    if (!currentUser) {
+        return res.status(404).render("404", { pageTitle: "404" });
+    }
+    return res.render("profile", { pageTitle: `${currentUser.username} 의 세부정보`, currentUser });
 }
 
 export const getEdit = (req, res) => {

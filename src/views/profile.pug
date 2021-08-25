@@ -1,4 +1,14 @@
 extends base.pug
 
 block content 
-    span 유저 세부정보
+    h2=currentUser.username
+    if String(loggedInUser ? loggedInUser._id : null) === String(currentUser._id)
+        h2=currentUser.name 
+        h2=currentUser.email
+        hr
+        a(href=`${currentUser._id}/edit`)=`${currentUser.username}의 정보 수정`
+    each study in currentUser.studies 
+        if String(loggedInUser ? loggedInUser._id : null) === String(currentUser._id)  
+            a(href=`/studies/${study._id}`)=study.title 
+        else
+            h5=study.title 

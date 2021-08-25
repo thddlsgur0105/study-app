@@ -32,7 +32,10 @@ export const postCreate = async (req, res) => {
             content,
             filtering,
             study: study._id,
-        })
+        });
+        await User.findByIdAndUpdate(user._id, {
+            $push: { studies: study._id }
+        });
         // redirect to home
         return res.redirect("/");
     } catch(error) {
@@ -44,13 +47,15 @@ export const postCreate = async (req, res) => {
 export const detail = async (req, res) => {
     const { id } = req.params;
     const room = await Room.findById(id).populate("author").populate("study");
-    console.log(Array.isArray(room.study.members));
     return res.render("watchRoom", { pageTitle: `세부정보: ${room.title}`, room });
 }
 
 export const getEdit = async (req, res) => {
     const { params: { id }, session: { user } } = req;
-    const room = await Room.findById(id);
+    const room = await Room.findById(id).populate({
+        path: "study",
+        populate: "members",
+    });
     if (!room) {
         return res.redirect("/");
     }

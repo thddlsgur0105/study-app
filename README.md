@@ -195,7 +195,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 ## 남은 과정
 
 1. userController 
-   1. profile
+   1. profile --> __Done__
    2. edit
    3. remove
 2. homepage
