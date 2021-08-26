@@ -55,7 +55,7 @@ export const logout = async (req, res) => {
 }
 
 export const profile = async (req, res) => {
-    const { params: { id }, session: { user } } = req;
+    const { id } = req.params;
     const currentUser = await User.findById(id).populate("studies");
     if (!currentUser) {
         return res.status(404).render("404", { pageTitle: "404" });
@@ -63,10 +63,38 @@ export const profile = async (req, res) => {
     return res.render("profile", { pageTitle: `${currentUser.username} 의 세부정보`, currentUser });
 }
 
-export const getEdit = (req, res) => {
-    return res.render("editUser", { pageTitle: "유저 세부정보 수정" });
+export const getEdit = async (req, res) => {
+    const { params: { id }, session: { user } } = req;
+    if (String(id) !== String(user._id)) {
+        return res.redirect(`/users/${id}`);
+    }
+    const currentUser = await User.findById(id).populate("studies");
+    return res.render("editUser", { pageTitle: `${currentUser.username} 의 세부정보 수정`, currentUser });
 }
 
-export const remove = (req, res) => {
-    return res.send("Remove User!");
+export const postEdit = async (req, res) => {
+    const { params: { id }, session: { user }, body: { username, email } } = req;
+    if (String(id) !== String(user._id)) {
+        return res.redirect(`/users/${id}`);
+    }
+    const currentUser = await User.findByIdAndUpdate(id, {
+        username: username === "" ? user.username : username,
+        email: email === "" ? user.email : email,
+    },
+    {
+        new: true,
+    })
+    req.session.user = currentUser;
+    return res.redirect(`/users/${id}`);
+}
+
+export const remove = async (req, res) => {
+    const { params: { id }, session: { user } } = req;
+    if (String(id) !== String(user._id)) {
+        return res.redirect("/");
+    }
+    await User.findByIdAndRemove(id);
+    req.session.destroy();
+    //- 유저 정보 삭제 시 해당 유저가 생성한 Room 전부 삭제
+    return res.redirect("/");
 }

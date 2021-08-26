@@ -192,11 +192,17 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 
 ----------------------------------------------------------------
 
+9. Change Password
+
+-> /change-password
+
+----------------------------------------------------------------
+
 ## 남은 과정
 
 1. userController 
    1. profile --> __Done__
-   2. edit
+   2. edit 
    3. remove
 2. homepage
    1. search input -> query args 활용 GET method
@@ -209,3 +215,5 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
    1. createRoom 시 studyRoom 생성
 5. editRoom
    1. __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user
+6. editUser
+   1. study 삭제 기능 -> api 활용해서 백엔드의 정보 수정
