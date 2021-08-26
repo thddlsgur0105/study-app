@@ -6,8 +6,8 @@ block content
         input(type="email", name="email", placeholder="변경할 이메일", value=currentUser.email)
         input(type="submit", value="변경하기")
     hr
-    a(href="") 비밀번호 변경
-    a(href=`/users/${currentUser._id}/remove`) 계정 삭제 
+    a(href="change-password") 비밀번호 변경
+    a(href=`remove`) 계정 삭제 
     hr 
     each study in currentUser.studies 
         span=study.title 

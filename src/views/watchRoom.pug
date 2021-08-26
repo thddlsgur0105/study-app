@@ -11,8 +11,8 @@ block content
     h4=room.createdAt
     h4=`${room.study.members.length}명 참여중`
     if String(room.author._id) === String(loggedInUser._id) 
-        a(href=`${room._id}/edit`) 스터디 편집 &rarr;   
-        a(href=`${room._id}/delete`) 스터디 삭제 &rarr; 
+        a(href=`${room._id}/edit`) 편집 &rarr;   
+        a(href=`${room._id}/delete`) 삭제 &rarr; 
     hr
     each comment in room.comments 
         h4=comment 

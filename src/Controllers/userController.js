@@ -1,5 +1,7 @@
 import User from "../Model/User";
 import bcrypt from "bcrypt";
+import Room from "../Model/Room";
+import Study from "../Model/Study";
 
 export const getLogin = (req, res) => {
     return res.render("login", { pageTitle: "로그인" });
@@ -93,8 +95,31 @@ export const remove = async (req, res) => {
     if (String(id) !== String(user._id)) {
         return res.redirect("/");
     }
+    //- Study database 에서 해당 user 를 members 에서 삭제
+    await Study.updateMany({ 
+        members: { $elemMatch: { $eq: id } }
+     },{
+        $pull: { members: id }
+    });
+    //- User database 에서 User 정보 삭제
     await User.findByIdAndRemove(id);
     req.session.destroy();
-    //- 유저 정보 삭제 시 해당 유저가 생성한 Room 전부 삭제
+    //- Room database 에서 Room 정보 삭제
+    await Room.deleteOne({
+        author: id,
+    })
     return res.redirect("/");
+}
+
+export const getChangePassword = (req, res) => {
+    const { params: { id }, session: { user } } = req;
+    if (String(id) !== String(user._id)) {
+        return res.redirect("/");
+    }
+    return res.render("change-password", { pageTitle: "비밀번호 변경" });
+};
+
+export const postChangePassword = (req, res) => {
+    console.log(req.body)
+    return res.end();
 }

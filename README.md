@@ -30,9 +30,10 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 
 ## userRouter --> __Done__
 
-[x] /users/:id/profile -> See User Profile
+[x] /users/:id -> See User Profile
 [x] /users/:id/edit -> Edit My Profile -> __form__
 [x] /users/:id/delete -> Delete User
+[x] /users/:id/change-password -> Change Password
 
 ## apiRouter --> __차후에 라우터 & 컨트롤러 만들기__
 
@@ -203,7 +204,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 1. userController 
    1. profile --> __Done__
    2. edit 
-   3. remove
+   3. remove -> __Done__
 2. homepage
    1. search input -> query args 활용 GET method
    2. filtering btn -> frontend api 전송 -> ??
