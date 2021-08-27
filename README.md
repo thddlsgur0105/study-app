@@ -206,8 +206,8 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
    2. edit --> __Done__
    3. remove -> __Done__
 2. homepage
-   1. search input -> query args 활용 GET method
-   2. filtering btn -> frontend api 전송 -> ??
+   1. search input -> query args 활용 GET method --> __Done__
+   2. filtering btn -> query args 활용 --> __Done__
 3. watchRoom
    1. __Join Study btn 생성 후 클릭 시 /api/join 으로 frontend 단의 fetch 활용__
    2. -> POST 방식의 fetch 활용해서 api 사용

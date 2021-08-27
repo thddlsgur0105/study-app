@@ -3,7 +3,24 @@ import Study from "../Model/Study";
 import User from "../Model/User";
 
 export const home = async (req, res) => {
-    const rooms = await Room.find({}).populate("author");
+    const { searchingBy, filtering } = req.query;
+    let rooms;
+    if (filtering) {
+        // filtering By terms
+        rooms = await Room.find({
+            filtering
+        }).populate("author");
+    } else {
+        // if filtering is undefined
+        if (searchingBy) {
+            // searching By terms
+            rooms = await Room.find({
+                title: new RegExp("^.{0,}" + searchingBy + ".{0,}$", "i")
+            }).populate("author");
+        } else {
+            rooms = await Room.find({}).populate("author");
+        }
+    }
     return res.render("home", { pageTitle: "홈", rooms });
 }
 
