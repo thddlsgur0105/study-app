@@ -4,12 +4,12 @@ import { protectedMiddleware } from "../middlewares";
 
 const userRouter = express.Router();
 
-userRouter.get("/:id", profile);
+userRouter.get("/:id([0-9a-fA-F]{24})", profile);
 
-userRouter.route("/:id/edit").all(protectedMiddleware).get(getEdit).post(postEdit);
+userRouter.route("/:id([0-9a-fA-F]{24})/edit").all(protectedMiddleware).get(getEdit).post(postEdit);
 
-userRouter.route("/:id/remove").all(protectedMiddleware).get(remove);
+userRouter.route("/:id([0-9a-fA-F]{24})/remove").all(protectedMiddleware).get(remove);
 
-userRouter.route("/:id/change-password").all(protectedMiddleware).get(getChangePassword).post(postChangePassword);
+userRouter.route("/:id([0-9a-fA-F]{24})/change-password").all(protectedMiddleware).get(getChangePassword).post(postChangePassword);
 
 export default userRouter;

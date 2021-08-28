@@ -1,0 +1,16 @@
+extends base.pug
+include mixins/postPreview
+
+block content 
+    ul
+        each member in study.members 
+                li 
+                    a(href=`/users/${member._id}`) #{String(member._id) === String(study.author._id) ? `👑 ${member.username}` : member.username}
+    hr
+    a(href=`${study._id}/posts/create`) 공부 기록 작성
+    hr
+    ul 
+        each post in study.posts 
+            +postPreview(post, study._id)
+        else 
+            small 공부 기록을 남겨주세요.

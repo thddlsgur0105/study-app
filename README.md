@@ -199,6 +199,15 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 
 ----------------------------------------------------------------
 
+10. Study Template
+
+-> Controller에서부터 study document를 받아서 pug template에 전달
+-> 멤버 별 username
+-> study author username
+-> __POSTS__ 게시 기능
+
+----------------------------------------------------------------
+
 ## 남은 과정
 
 1. userController 

@@ -1,0 +1,7 @@
+mixin postPreview(post, studyId)
+    div 
+        a(href=`${studyId}/posts/${post._id}`)=post.title
+        br
+        small=post.author.username 
+        br
+        small=post.createdAt 

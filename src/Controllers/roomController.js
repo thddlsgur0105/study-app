@@ -25,9 +25,6 @@ export const home = async (req, res) => {
 }
 
 export const getCreate = (req, res) => {
-    if (!req.session.loggedIn) {
-        return res.redirect("/");
-    }
     return res.render("createRoom", { pageTitle: "스터디 생성" });
 }
 
@@ -114,6 +111,20 @@ export const remove = async (req, res) => {
 
 // Study Model
 
-export const studyDetail = (req, res) => {
-    return res.send("Study Detail!");
+export const studyDetail = async (req, res) => {
+    const { id } = req.params;
+    const study = await Study.findById(id).populate({
+        path: "members",
+        select: "username",
+    }).populate({
+        path: "author",
+        select: "username",
+    }).populate({
+        path: "posts",
+        populate: {
+            path: "author",
+            select: "username",
+        },
+    });
+    return res.render("studyDetail", { pageTitle: study.title, study });
 }
