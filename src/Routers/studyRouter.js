@@ -9,6 +9,6 @@ studyRouter.route("/:id([0-9a-fA-F]{24})").all(protectedMiddleware).get(studyDet
 
 studyRouter.route("/:id([0-9a-fA-F]{24})/posts/create").all(protectedMiddleware).get(getCreate).post(postCreate);
 
-studyRouter.route("/:id([0-9a-fA-F]{24})/posts/:id2([0-9a-fA-F]{24})").get(detail)
+studyRouter.route("/:id([0-9a-fA-F]{24})/posts/:id2([0-9a-fA-F]{24})").all(protectedMiddleware).get(detail)
 
 export default studyRouter;

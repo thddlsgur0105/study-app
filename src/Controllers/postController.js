@@ -40,7 +40,15 @@ export const postCreate = async (req, res) => {
     return res.redirect(`/studies/${id}`);
 }
 
-export const detail = (req, res) => {
+export const detail = async (req, res) => {
     const { params: { id, id2 } } = req;
-    res.send("Post Detail!");
+    //- id : studyId & id2: postId
+    const postExists = await Study.exists({
+        $and: [{ _id: id }, { posts: { $elemMatch: { $eq: id2 } } }]
+    });
+    if (!postExists) {
+        return res.redirect(`/studies/${id}`)
+    }
+    const post = await Post.findById(id2);
+    return res.render("postDetail", { pageTitle: post.title, post })
 }
