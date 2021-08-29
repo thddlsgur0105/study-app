@@ -126,5 +126,8 @@ export const studyDetail = async (req, res) => {
             select: "username",
         },
     });
+    if (!study) {
+        return res.redirect("/");
+    }
     return res.render("studyDetail", { pageTitle: study.title, study });
 }

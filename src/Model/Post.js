@@ -7,12 +7,12 @@ const postSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     studyStart: { type: String, default: "00:00" },
     studyEnd: { type: String, default: "00:00"},
-    breakStart: { type: String },
-    breakEnd: { type: String },
+    breakStart: { type: String, default: "00:00" },
+    breakEnd: { type: String, default: "00:00" },
     totalTime: { type: String, default: "0h 0m" },
 });
 
-const getTotalTime = ({studyStart, studyEnd, breakStart, breakEnd}) => {
+const getTotalTime = ({ studyStart, studyEnd, breakStart, breakEnd }) => {
     const [startHours, startMinutes] = studyStart.split(":");
     const [endHours, endMinutes] = studyEnd.split(":");
     const [breakStartHours, breakStartMinutes] = breakStart.split(":");

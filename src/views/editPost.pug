@@ -1,0 +1,16 @@
+extends base.pug
+
+block content 
+    form(method="POST")
+        input(type="text", placeholder="기록 이름을 수정하세요.", name="title", required, value=post.title)
+        hr
+        label(for="studyStart") 공부 시작 시간 수정
+        input(id="studyStart", type="time", name="studyStart", value=post.studyStart)
+        label(for="studyEnd") 공부 종료 시간 수정
+        input(id="studyEnd", type="time", name="studyEnd", value=post.studyEnd)
+        hr
+        label(for="breakStart") 쉬는 시간 시작 수정
+        input(id="breakStart", type="time", name="breakStart", value=post.breakStart)
+        label(for="breakEnd") 쉬는 시간 종료 수정
+        input(id="breakEnd", type="time", name="breakEnd", value=post.breakEnd)
+        input(type="submit", value="수정하기")
