@@ -210,20 +210,12 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 
 ## 남은 과정
 
-1. userController 
-   1. profile --> __Done__
-   2. edit --> __Done__
-   3. remove -> __Done__
-2. homepage
-   1. search input -> query args 활용 GET method --> __Done__
-   2. filtering btn -> query args 활용 --> __Done__
-3. watchRoom
+1. watchRoom
    1. __Join Study btn 생성 후 클릭 시 /api/join 으로 frontend 단의 fetch 활용__
    2. -> POST 방식의 fetch 활용해서 api 사용
    3. -> api : Room model users 에 user objectId push & User model rooms 에 room objectId push
-4. 공부하는 studyroom 생성
-   1. createRoom 시 studyRoom 생성
-5. editRoom
-   1. __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user
-6. editUser
-   1. study 삭제 기능 -> api 활용해서 백엔드의 정보 수정
+2. watchRoom
+   1. /api/view -> views = views + 1 
+3. studyDetail
+   1. __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user 삭제
+   2. /api/users/:id/remove -> 특정 user remove -> user의 study 탈퇴 기능

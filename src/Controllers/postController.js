@@ -83,7 +83,7 @@ export const postEdit = async (req, res) => {
     const post = await Post.findOne({
         $and: [{ _id: id2 }, { author: user._id }]
     });
-    
+
     post.title = title;
     post.studyStart = studyStart;
     post.studyEnd = studyEnd;
@@ -94,3 +94,30 @@ export const postEdit = async (req, res) => {
     
     return res.redirect(`/studies/${id}`);
 }
+
+export const remove = async (req, res) => {
+    const { params: { id, id2 }, session: { user }, body: { title, studyStart, studyEnd, breakStart, breakEnd } } = req;
+    //- id : studyId & id2: postId
+    const postExists = await Study.exists({
+        $and: [{ _id: id }, { posts: { $elemMatch: { $eq: id2 } } }]
+    });
+    if (!postExists) {
+        return res.redirect(`/studies/${id}`)
+    }
+
+    //- remove post from Post model
+    await Post.findOneAndRemove({
+        $and: [{ _id: id2 }, { author: user._id }]
+    });
+
+    //- remove post from Study model
+    await Study.findOneAndUpdate({
+        $and: [{
+            members: { $elemMatch: { $eq: user._id } }
+        }, { _id: id }]
+    }, {
+        $pull: { posts: id2 }
+    });
+
+    return res.redirect(`/studies/${id}`);
+};
