@@ -208,6 +208,14 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 
 ----------------------------------------------------------------
 
+11. frontend 작업
+
+-> scss 활용?
+-> webpack configuration
+-> wetube course webpack configuration 강의 듣고 넘어가는 걸로
+
+----------------------------------------------------------------
+
 ## 남은 과정
 
 1. watchRoom
@@ -219,3 +227,4 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 3. studyDetail
    1. __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user 삭제
    2. /api/users/:id/remove -> 특정 user remove -> user의 study 탈퇴 기능
+
