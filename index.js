@@ -26,6 +26,7 @@ app.use(session({
 
 app.use(express.urlencoded({ extended: true }));
 app.use(localsMiddleware);
+app.use("/assets", express.static("assets"));
 
 app.set("views", "src/views");
 app.set("view engine", "pug");
