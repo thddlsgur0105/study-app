@@ -1,18 +1,19 @@
-header
-    h1=pageTitle 
-    nav 
-        ul 
-            li 
-                a(href="/") 홈
-            if loggedIn 
+header.header
+    .header-container.inner
+        h1.header__title=pageTitle 
+        nav.header__nav
+            ul 
                 li 
-                    a(href=`/users/${loggedInUser._id}`) #{loggedInUser.username} 의 프로필
-                li 
-                    a(href="/logout") 로그아웃
-                li 
-                    a(href="/rooms/create") 스터디 생성
-            else 
-                li 
-                    a(href="/login") 로그인
-                li 
-                    a(href="/join") 회원가입
+                    a(href="/") 홈
+                if loggedIn 
+                    li 
+                        a(href=`/users/${loggedInUser._id}`) #{loggedInUser.username} 의 프로필
+                    li 
+                        a(href="/logout") 로그아웃
+                    li 
+                        a(href="/rooms/create") 스터디 생성
+                else 
+                    li 
+                        a(href="/login") 로그인
+                    li 
+                        a(href="/join") 회원가입
