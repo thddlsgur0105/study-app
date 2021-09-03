@@ -2,7 +2,6 @@ const closeBtn = document.getElementById("closeBtn");
 const openBtn = document.getElementById("openBtn");
 const sideBar = document.getElementById("sideBar");
 
-
 const handleClose = () => {
     sideBar.classList.replace("opened", "closed");
 }

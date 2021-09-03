@@ -21,10 +21,9 @@ block content
                 input(type="text", name="searchingBy", placeholder="모집하는 방을 검색하세요.")
                 button.form__btn 
                     i.fas.fa-search-plus.fa-lg
-        button.form__btn#searchBtn 
-            i.fas.fa-chevron-down 
-    hr
-    each room in rooms 
-        +roomPreview(room)
-    else 
-        h2="스터디가 없습니다."
+    .room-container.inner      
+        each room in rooms 
+            +roomPreview(room)
+        else
+            h1 No Rooms 
+        

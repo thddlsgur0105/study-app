@@ -1,11 +1,8 @@
 mixin roomPreview(room)
-    div 
-        a(href=`/rooms/${room._id}`)=room.title
-        br
-        small=room.filtering 
-        br
-        small=room.author.username 
-        br 
-        small=room.createdAt 
-        hr
-    
+    a(href=`/rooms/${room._id}`).room__preview 
+        span=room.title
+        .room__description 
+            small=room.filtering 
+            small=room.author.username 
+        //- br 
+        //- small=room.createdAt 
