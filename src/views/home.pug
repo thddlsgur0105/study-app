@@ -2,17 +2,19 @@ extends base.pug
 include mixins/roompreview.pug
 
 block content
-    form(method="GET")
-        input(type="radio", id="toeic", name="filtering", value="toeic")
-        label(for="toeic") 토익
-        input(type="radio", id="official", name="filtering", value="official")
-        label(for="official") 공시
-        input(type="radio", id="self", name="filtering", value="self")
-        label(for="self") 자율
-        input(type="submit", value="필터링하기")
-    form(method="GET")
-        input(type="text", name="searchingBy", placeholder="모집하는 방을 검색하세요.")
-        input(type="submit", value="검색하기")
+    .form-container
+        .inner 
+            form(method="GET").form
+                input(type="radio", id="toeic", name="filtering", value="toeic")
+                label(for="toeic") 토익
+                input(type="radio", id="official", name="filtering", value="official")
+                label(for="official") 공시
+                input(type="radio", id="self", name="filtering", value="self")
+                label(for="self") 자율
+                input(type="submit", value="필터링하기")
+            form(method="GET").form
+                input(type="text", name="searchingBy", placeholder="모집하는 방을 검색하세요.")
+                input(type="submit", value="검색하기")
     hr
     each room in rooms 
         +roomPreview(room)
