@@ -1,15 +1,57 @@
 .header {
     position: relative;
     .header__menu {
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         position: absolute;
-        left: -100px;
+        background-color: $white;
+        color: $black;
+        width: 60vw;
+        height: 100vh;
+        transition: all .5s ease-in-out;
+        .header__tags {
+            width: 100%;
+            height: 56px;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 3px solid $gray;
+            .fas.fa-times-circle {
+                cursor: pointer;
+            }
+        }
+        ul {
+            width: 70%;
+            font-size: .9rem;
+            color: rgba(0, 0, 0, 0.6);
+            li {
+                padding: 7px 0;
+            }
+        }
     }
     .header-container {
-        width: 100%;
+        width: 100vw;
         height: 56px;
         box-sizing: border-box;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        .header__open {
+            cursor: pointer;
+        }
     }
+}
+
+/* HEADER ANIMATION */
+
+.closed {
+    left: -80vw;
+}
+
+.opened {
+    left: 0;
 }

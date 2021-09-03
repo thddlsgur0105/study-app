@@ -1,5 +1,8 @@
 header.header
-    nav.header__menu
+    nav.header__menu.closed#sideBar 
+        .header__tags 
+            span.header__title StudyApp  
+            span#closeBtn.fas.fa-times-circle.fa-2x
         ul 
             li 
                 a(href="/") 홈
@@ -16,7 +19,7 @@ header.header
                 li 
                     a(href="/join") 회원가입
     .header-container.inner 
-        span.header__nav 
+        span.header__open#openBtn 
             i.fas.fa-bars 
         h1.header__title=pageTitle
         span.header__search 
