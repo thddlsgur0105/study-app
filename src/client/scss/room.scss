@@ -2,6 +2,42 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    .room__btns {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $gray;
+        .room__btn {
+            &:first-child {
+                margin-right: 10px;
+            }
+            padding: 10px;
+            background-color: $white;
+            border: 1px solid $gray;
+            outline: none;
+            font: inherit;
+            border-radius: 9999px;
+        }
+    }
+    .room__textarea {
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid $gray;
+        border-radius: 20px;
+    }
+    .room__description {
+        .room__username,
+        .room__createdAt,
+        .room__people {
+            padding: 10px;
+        }
+
+        .room__createdAt {
+            font-size: smaller;
+        }
+    }
 }
 
 .room__preview {
@@ -12,7 +48,15 @@
     font: inherit;
     box-sizing: border-box;
     padding: 20px;
-    background-color: $black;
-    color: $white;
+    background: none;
+    color: $black;
+    border: 1px solid $gray;
     border-radius: 20px;
+    margin-top: 10px;
+    .room__description {
+        width: 40%;
+        small {
+            margin-left: 20%;
+        }
+    }
 }

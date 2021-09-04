@@ -1,0 +1,18 @@
+.profile__userInfo,
+.profile__studies {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    & > * {
+        padding: 10px;
+        font: inherit;
+    }
+    .profile__title {
+        font-size: larger;
+        align-self: center;
+    }
+}
+
+.profile__userInfo {
+    border-bottom: 1px solid $gray;
+}

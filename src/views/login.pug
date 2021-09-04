@@ -1,7 +1,8 @@
 extends base.pug
 
-block content 
-    form(method="POST")
-        input(type="text", name="username", placeholder="유저이름", required)
-        input(type="password", name="password", placeholder="비밀번호", required)
-        input(type="submit", value="로그인")
+block content
+    .form-container.inner 
+        form(method="POST").form.form__login
+            input(type="text", name="username", placeholder="유저이름", required)
+            input(type="password", name="password", placeholder="비밀번호", required)
+            input(type="submit", value="로그인")

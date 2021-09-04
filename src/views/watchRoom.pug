@@ -1,20 +1,22 @@
 extends base.pug
 
 block content
-    //- /api/${room.study._id}/join 으로 POST fetch 
-    button 참여하기
-    if room.study.members.includes(loggedInUser._id)
-        a(href=`/studies/${room.study._id}`) 바로 가기 
-    textarea(disabled, cols="30", rows="10")=room.content
-    h4=room.author.username
-    h4=room.hashtags
-    h4=room.createdAt
-    h4=`${room.study.members.length}명 참여중`
-    if String(room.author._id) === String(loggedInUser._id) 
-        a(href=`${room._id}/edit`) 편집 &rarr;   
-        a(href=`${room._id}/delete`) 삭제 &rarr; 
-    hr
-    each comment in room.comments 
-        h4=comment 
-    else 
-        h4 댓글이 없습니다.
+    .room-container.inner 
+        //- /api/${room.study._id}/join 으로 POST fetch 
+        textarea.room__textarea(disabled, cols="30", rows="10")=room.content
+        .room__btns 
+            button.room__btn 참여하기
+            if room.study.members.includes(loggedInUser._id)
+                a.room__btn(href=`/studies/${room.study._id}`) 바로 가기 
+        .room__description
+            h4.room__username=`글쓴이: ${room.author.username}`
+            h4.room__createdAt=`생성일: ${room.createdAt}`
+            h4.room__people=`${room.study.members.length}명 참여중`
+            .room__btns 
+                if String(room.author._id) === String(loggedInUser._id) 
+                    a.room__btn(href=`${room._id}/edit`) 편집 &rarr;   
+                    a.room__btn(href=`${room._id}/delete`) 삭제 &rarr; 
+            each comment in room.comments 
+                h4=comment 
+            else 
+                h4 댓글이 없습니다.

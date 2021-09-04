@@ -1,14 +1,18 @@
 extends base.pug
 
 block content 
-    h2=currentUser.username
-    if String(loggedInUser ? loggedInUser._id : null) === String(currentUser._id)
-        h2=currentUser.name 
-        h2=currentUser.email
-        hr
-        a(href=`${currentUser._id}/edit`)=`${currentUser.username}의 정보 수정`
-    each study in currentUser.studies 
-        if String(loggedInUser ? loggedInUser._id : null) === String(currentUser._id)  
-            a(href=`/studies/${study._id}`)=study.title 
-        else
-            h5=study.title
+    .inner 
+        .profile__userInfo 
+            span.profile__title 유저 정보
+            span.profile__username=`유저 닉네임: ${currentUser.username}`
+            if String(loggedInUser ? loggedInUser._id : null) === String(currentUser._id)
+                span.profile__name=`유저 이름: ${currentUser.name}`
+                span.profile__email=`이메일: ${currentUser.email}`
+                a(href=`${currentUser._id}/edit`)=`${currentUser.username}의 정보 수정`
+        .profile__studies 
+            span.profile__title 참여한 스터디
+            each study in currentUser.studies 
+                if String(loggedInUser ? loggedInUser._id : null) === String(currentUser._id)  
+                    a.room__preview(href=`/studies/${study._id}`)=study.title 
+                else
+                    h5.room__preview=study.title
