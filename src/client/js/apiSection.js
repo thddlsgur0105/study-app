@@ -15,6 +15,14 @@ const handleClick = async () => {
     joinBtn.setAttribute("disabled", "true");
 }
 
+const handleLoad = (req, res) => {
+    fetch(`/api/rooms/${roomId}/view`, {
+        method: "POST"
+    });
+}
+
+window.addEventListener("load", handleLoad);
+
 if (joinBtn) {
     joinBtn.addEventListener("click", handleClick);
 }

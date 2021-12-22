@@ -9,7 +9,7 @@ const roomSchema = new mongoose.Schema({
     filtering: { type: String, required: true }, 
     study: { type: mongoose.ObjectId, ref: "Study" },
     meta: {
-        views: Number, 
+        views: { type: Number, default: 0 }, 
     }
 });
 

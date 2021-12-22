@@ -2,7 +2,5 @@ mixin roomPreview(room)
     a(href=`/rooms/${room._id}`).preview-card 
         span=room.title
         .room__description 
-            small=room.filtering 
-            small=room.author.username 
-        //- br 
-        //- small=room.createdAt 
+            span.room__people=`✍🏼: ${room.study.members.length}명`
+            span.room__watched=`👀: ${room.meta.views}명`

@@ -25,6 +25,10 @@ a {
     text-decoration: none;
 }
 
+button {
+    outline: none;
+}
+
 /* COMMON */
 
 .inner {
@@ -83,10 +87,12 @@ a {
     }
 }
 
-.study__member-list {
+.member-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    .study__member {
+    justify-items: center;
+    align-items: center;
+    .member {
         font-size: larger;
         font-weight: bold;
         margin-bottom: 10px;
@@ -95,4 +101,8 @@ a {
 
 .study__btn {
     display: inline-block;
+}
+
+.delete__btn {
+    padding: 0 5px;
 }

@@ -3,9 +3,9 @@ include mixins/postPreview
 
 block content 
     .inner 
-        ul.study__member-list
+        ul.member-list
             each member in study.members 
-                    li.study__member
+                    li.member
                         a(href=`/users/${member._id}`) #{String(member._id) === String(study.author._id) ? `👑 ${member.username}` : `😀 ${member.username}`}
         hr
         a(href=`${study._id}/posts/create`).study__btn.btn 공부 기록 작성

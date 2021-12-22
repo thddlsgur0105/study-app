@@ -5,7 +5,8 @@ module.exports = {
     entry: {
         main: "./src/client/js/main.js",
         commentSection: "./src/client/js/commentSection.js",
-        joinSection: "./src/client/js/joinSection.js"
+        apiSection: "./src/client/js/apiSection.js",
+        deleteMember: "./src/client/js/deleteMember.js",
     },
     plugins: [new MiniCssExtractPlugin({
         filename: "css/styles.css"

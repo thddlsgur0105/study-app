@@ -2,12 +2,10 @@ extends base.pug
 
 block content
     .room-container.inner#roomContainer(data-id=room._id)
-        //- /api/${room.study._id}/join 으로 POST fetch 
         textarea.room__textarea(disabled, cols="30", rows="10")=room.content
         .room__description
             h4.room__username=`글쓴이: ${room.author.username}`
             h4.room__createdAt=`생성일: ${room.createdAt}`
-            h4.room__people=`${room.study.members.length}명 참여중`
             .room__btns
                 if room.study.members.includes(loggedInUser._id)
                     a.room__btn.btn(href=`/studies/${room.study._id}`) 바로 가기
@@ -27,5 +25,5 @@ block content
                 else 
                     span#noComment 댓글이 없습니다.
 block script
-    script(src="/assets/js/joinSection.js") 
+    script(src="/assets/js/apiSection.js") 
     script(src="/assets/js/commentSection.js") 

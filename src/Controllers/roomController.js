@@ -9,16 +9,25 @@ export const home = async (req, res) => {
         // filtering By terms
         rooms = await Room.find({
             filtering
-        }).populate("author");
+        }).populate({
+            path: "study",
+            select: "members",
+        });
     } else {
         // if filtering is undefined
         if (searchingBy) {
             // searching By terms
             rooms = await Room.find({
                 title: new RegExp("^.{0,}" + searchingBy + ".{0,}$", "i")
-            }).populate("author");
+            }).populate({
+                path: "study",
+                select: "members",
+            });
         } else {
-            rooms = await Room.find({}).populate("author");
+            rooms = await Room.find({}).populate({
+                path: "study",
+                select: "members",
+            });
         }
     }
     return res.render("home", { pageTitle: "홈", rooms });
@@ -82,7 +91,7 @@ export const getEdit = async (req, res) => {
     if (String(room.author) !== String(user._id)) {
         return res.redirect("/");
     }
-    return res.render("editRoom", { pageTitle: `편집: ${room.title}`, room });
+    return res.render("editRoom", { pageTitle: `편집: ${room.title}`, room, user });
 }
 
 export const postEdit = async (req, res) => {
@@ -136,4 +145,34 @@ export const studyDetail = async (req, res) => {
         return res.redirect("/");
     }
     return res.render("studyDetail", { pageTitle: study.title, study });
+}
+
+export const addView = async (req, res) => {
+    const { roomId } = req.params;
+    const room = await Room.findById(roomId);
+    if (!room) {
+        return res.sendStatus(404);
+    }
+    room.meta.views = room.meta.views + 1;
+    await room.save();
+    return res.sendStatus(200);
+}
+
+export const removeUser = async (req, res) => {
+    const { targetRoom, targetMember } = req.body;
+    const room = await Room.findById(targetRoom);
+    const studyId = room.study;
+    try {
+        // Update Study Database
+        await Study.findByIdAndUpdate(studyId, {
+            $pull: { members: targetMember }
+        });
+        // Update User Database
+        await User.findByIdAndUpdate(targetMember, {
+            $pull: { studies: studyId }
+        });
+    } catch(error) {
+        return res.sendStatus(404);
+    }
+    return res.sendStatus(200);
 }

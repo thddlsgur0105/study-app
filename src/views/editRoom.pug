@@ -14,11 +14,15 @@ block content
                 input(type="radio", id="self", name="filtering", value="self")
                 label(for="self") 자율
             input(type="submit", value="편집하기")
-        each member in room.study.members
-            .form__member
-                span=member.username  
-                span ❌
+        ul#memberList.member-list(data-id=room._id)
+            each member in room.study.members.filter(member => String(member._id) !== String(user._id))
+                li.member
+                    span=member.username  
+                    button.btn.delete__btn(data-id=member._id) ❌
         each comment in room.comments 
             span.comment=comment 
         else 
             span.comment 댓글이 없습니다.
+
+block script 
+    script(src="/assets/js/deleteMember.js") 
