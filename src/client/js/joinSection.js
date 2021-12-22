@@ -12,6 +12,7 @@ const handleClick = async () => {
         return ;
     }
     joinBtn.innerText = "참여완료!";
+    joinBtn.setAttribute("disabled", "true");
 }
 
 if (joinBtn) {

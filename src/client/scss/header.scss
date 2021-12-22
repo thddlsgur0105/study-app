@@ -1,7 +1,10 @@
 .header {
     background-color: $black;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 9999;
+    height: 9%;
     .header__menu {
         z-index: 9999;
         display: flex;
@@ -15,7 +18,7 @@
         transition: all .5s ease-in-out;
         .header__tags {
             width: 100%;
-            height: 56px;
+            height: 9%;
             padding: 10px;
             box-sizing: border-box;
             display: flex;
@@ -37,7 +40,7 @@
     }
     .header-container {
         width: 100vw;
-        height: 56px;
+        height: 100%;
         box-sizing: border-box;
         display: flex;
         justify-content: space-between;

@@ -8,14 +8,14 @@ block content
             h4.room__username=`글쓴이: ${room.author.username}`
             h4.room__createdAt=`생성일: ${room.createdAt}`
             h4.room__people=`${room.study.members.length}명 참여중`
-            .room__btns 
+            .room__btns
                 if room.study.members.includes(loggedInUser._id)
-                    a.room__btn(href=`/studies/${room.study._id}`) 바로 가기
+                    a.room__btn.btn(href=`/studies/${room.study._id}`) 바로 가기
                 else 
-                    button#joinBtn.room__btn 참여하기
+                    button#joinBtn.room__btn.btn 참여하기
                 if String(room.author._id) === String(loggedInUser._id) 
-                    a.room__btn(href=`${room._id}/edit`) 편집 &rarr;   
-                    a.room__btn(href=`${room._id}/delete`) 삭제 &rarr; 
+                    a.room__btn.btn(href=`${room._id}/edit`) 편집 &rarr;   
+                    a.room__btn.btn(href=`${room._id}/delete`) 삭제 &rarr; 
             form#commentForm.comment-form
                 input(type="text")
                 button 작성 

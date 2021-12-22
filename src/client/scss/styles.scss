@@ -6,11 +6,12 @@
 @import "./post.scss";
 
 main {
-    min-height: 85vh; 
+    margin-top: 20%; 
 }
 
 footer {
     text-align: center;
+    margin: 10px 0px;
 }
 body {
     background-color: $white;
@@ -30,6 +31,16 @@ a {
     padding: 0 5%;
 }
 
+.btn {
+    margin-right: 5px;
+    padding: 10px;
+    background-color: $black;
+    color: $white;
+    outline: none;
+    font: inherit;
+    border-radius: 9999px;
+}
+
 /* CARD */
 
 .preview-card {
@@ -43,7 +54,6 @@ a {
     background: none;
     color: $black;
     border: 1px solid $gray;
-    border-radius: 20px;
     margin-top: 10px;
     .room__description {
         width: 40%;
@@ -54,7 +64,7 @@ a {
 }
 
 .comment {
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,11 +75,24 @@ a {
     background: none;
     color: $black;
     border: 1px solid $gray;
-    border-radius: 9999px;
     .comment__content {
         font-size: larger;
     }
     .comment__author {
         font-size: smaller;
     }
+}
+
+.study__member-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    .study__member {
+        font-size: larger;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+}
+
+.study__btn {
+    display: inline-block;
 }
