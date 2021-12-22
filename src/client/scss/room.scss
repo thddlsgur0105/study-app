@@ -7,9 +7,7 @@
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
-        padding-bottom: 10px;
-        border-bottom: 1px solid $gray;
+        justify-content: flex-start;
     }
     .room__textarea {
         padding: 10px;
@@ -19,13 +17,14 @@
     }
     .room__description {
         .room__username,
-        .room__createdAt,
-        .room__people {
+        .room__createdAt {
             padding: 10px;
         }
-
         .room__createdAt {
             font-size: smaller;
+        }
+        .room__watched {
+            margin-left: 10px;
         }
     }
 }
