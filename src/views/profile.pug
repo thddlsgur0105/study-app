@@ -13,6 +13,6 @@ block content
             span.profile__title 참여한 스터디
             each study in currentUser.studies 
                 if String(loggedInUser ? loggedInUser._id : null) === String(currentUser._id)  
-                    a.room__preview(href=`/studies/${study._id}`)=study.title 
+                    a.preview-card(href=`/studies/${study._id}`)=study.title 
                 else
-                    h5.room__preview=study.title
+                    h5.preview-card=study.title

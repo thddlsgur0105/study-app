@@ -39,24 +39,3 @@
         }
     }
 }
-
-.room__preview {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font: inherit;
-    box-sizing: border-box;
-    padding: 20px;
-    background: none;
-    color: $black;
-    border: 1px solid $gray;
-    border-radius: 20px;
-    margin-top: 10px;
-    .room__description {
-        width: 40%;
-        small {
-            margin-left: 20%;
-        }
-    }
-}

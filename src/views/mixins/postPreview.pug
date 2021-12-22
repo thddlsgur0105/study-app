@@ -1,7 +1,5 @@
 mixin postPreview(post, studyId)
-    div 
-        a(href=`${studyId}/posts/${post._id}`)=post.title
-        br
-        small=post.author.username 
-        br
-        small=post.createdAt 
+    a.preview-card(data-createdat=post.createdAt, href=`${studyId}/posts/${post._id}`)  
+        h1.post__totalTime=post.totalTime
+        h2.post__title=post.title
+        small.post__username=post.author.username 

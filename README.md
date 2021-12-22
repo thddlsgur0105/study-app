@@ -1,16 +1,11 @@
-스터디 팀 매칭 
+# 스터디 팀 매칭앱
 
-mongoose -> 해당 조건을 해시태그로 걸고 관련된 스터디 구인 room 이 검색되는 기능 ? 
-mongoose Model.findOne({...})
-Search Room -> Hashtag 로 filtering 혹은 직접 검색 -> 원하는 room 검색
-Room 게시글 작성 -> form 활용 -> Create Study Room 
--> 분야설정 토익시험 준비 / 공무원시험 준비 / 컴퓨터 공부 / 자율 공부 -> Hashtag 로 설정 가능
-Room 마다 고유 id -> room detail page 접속 -> Comment 기능
-room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
-
--> 스터디룸 입장하기 -> 날짜별 : 유저들이 공부 관련 시간 기록 form -> Study model database 에 document 생성
--> 날짜마다 공부한 친구들의 공부시간을 도표로 날짜별 비교
--> 내 정보 : 날짜별 내 공부시간 
+1. 해당 조건을 **Hashtags** 로 필터링해서 검색하면 관련된 스터디 구인 **Room** 이 검색됨
+2. **Room** 내에서 **form** 활용해서 **Study Room** 생성
+3. **Room** 내에서 **Comment** 작성 기능
+4. **Study** 내에서 **User** 들이 공부 관련 시간 기록 **form**
+5. **Study model database** 에 **document** 생성
+6. 날짜마다 공부한 친구들의 시간 정보 기록
 
 # Router
 
@@ -45,10 +40,9 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 
 [x] /studies/:id -> Watch my study room
 
-
 ----------------------------------------------------------------
 
-# Controller
+## Controller
 
 [o] / -> Room Controller
 [o] /login -> User Controller
@@ -67,9 +61,10 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
 
 ----------------------------------------------------------------
 
-# Model
+## Model
 
-## User Schema {
+### User Schema
+    {
     _id: {...},
     email: { type: String, required: true, unique: true },
     username: { type: String, required: true, unique: true },
@@ -77,9 +72,10 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
     name: { type: String, required: true },
     studies: [{ type: ObjectId, ref: Study }],
     rooms: [{ type: ObjectId, ref: Room }]
-} --> __Done__
+    }
 
-## Room Schema {
+## Room Schema 
+    {
     _id: {...},
     title: { type: String, required: true }, --- 변경 가능
     author: { type: String, required: true }, --- 변경 불가
@@ -89,19 +85,20 @@ room detail page -> 게시글 내용 로드 -> 유저의 참여 여부 선택
     users: [{ type: ObjectId, ref: User }], --- 변경 가능 -> 방장이 필요 시 유저 제거할 수 있는 기능
     meta: {
         views: Number, --- 변경 불가
+           }
     }
-} --> __Done__
 
 ## Comment
 
-## Study Schema {
+## Study Schema 
+    {
     _id: {...},
     author: { type: String, required: true },
     targetRoom: { type: ObjectId, ref: Room },
     createdAt: { type: Date, default: Date.now },
     durations: [{ type: Number }],
     totalTime: { type: Number, default: 0 },
-} --> __Done__
+    }
 
 
 ----------------------------------------------------------------
@@ -159,7 +156,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 ----------------------------------------------------------------
 
 
-1. Watch Room
+6. Watch Room
 
 -> Home page 에서 mixins 활용 container 클릭 시 /rooms/:id 특정 anchor 로 이동
 -> GET method 에서 req.params 의 id 로 database 에서 document 발견 -> pug template 에 room 관련 form data rendering
@@ -227,4 +224,9 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 3. studyDetail
    1. __users 역시 btn 으로 생성 후 삭제 가능하게__ -> api 활용해서 user 삭제
    2. /api/users/:id/remove -> 특정 user remove -> user의 study 탈퇴 기능
-
+4. apiRouter
+   1. /api/:id/join -> :id 인 Study 로 Join
+   2. /api/view -> views = views + 1
+   3. /api/users/:id/remove -> 특정 user remove
+5. Comment
+6. 공부 Post 들 날짜별로 정리

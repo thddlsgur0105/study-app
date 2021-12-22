@@ -3,6 +3,7 @@
 @import "./form.scss";
 @import "./room.scss";
 @import "./profile.scss";
+@import "./post.scss";
 
 main {
     min-height: 85vh; 
@@ -27,4 +28,27 @@ a {
 
 .inner {
     padding: 0 5%;
+}
+
+/* CARD */
+
+.preview-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font: inherit;
+    box-sizing: border-box;
+    padding: 20px;
+    background: none;
+    color: $black;
+    border: 1px solid $gray;
+    border-radius: 20px;
+    margin-top: 10px;
+    .room__description {
+        width: 40%;
+        small {
+            margin-left: 20%;
+        }
+    }
 }

@@ -10,6 +10,7 @@ import rootRouter from "./src/Routers/rootRouter";
 import userRouter from "./src/Routers/userRouter";
 import { localsMiddleware } from "./src/middlewares";
 import studyRouter from "./src/Routers/studyRouter";
+import apiRouter from "./src/Routers/apiRouter";
 
 const app = express();
 const PORT = 4000;
@@ -25,6 +26,8 @@ app.use(session({
 }));
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(localsMiddleware);
 app.use("/assets", express.static("assets"));
 
@@ -35,6 +38,7 @@ app.use("/", rootRouter);
 app.use("/rooms", roomRouter);
 app.use("/users", userRouter);
 app.use("/studies", studyRouter);
+app.use("/api", apiRouter);
 
 app.listen(PORT, () => {
     console.log(`✅ Example app listening at http://localhost:${PORT}`);

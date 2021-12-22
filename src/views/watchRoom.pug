@@ -1,7 +1,7 @@
 extends base.pug
 
 block content
-    .room-container.inner 
+    .room-container.inner
         //- /api/${room.study._id}/join 으로 POST fetch 
         textarea.room__textarea(disabled, cols="30", rows="10")=room.content
         .room__btns 
@@ -16,7 +16,12 @@ block content
                 if String(room.author._id) === String(loggedInUser._id) 
                     a.room__btn(href=`${room._id}/edit`) 편집 &rarr;   
                     a.room__btn(href=`${room._id}/delete`) 삭제 &rarr; 
+            form#commentContainer(data-id=room._id)
+                input(type="text")
+                button 작성 
             each comment in room.comments 
                 h4=comment 
             else 
                 h4 댓글이 없습니다.
+block script
+    script(src="/assets/js/commentSection.js") 

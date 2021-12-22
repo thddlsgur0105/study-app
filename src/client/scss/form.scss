@@ -61,6 +61,12 @@
         border: 1px solid $gray;
         border-radius: 20px;
     }
+    .form__member {
+        padding: 10px;
+        span {
+            margin-right: 10px;
+        }
+    }
 }
 
 .form__btn {
@@ -74,6 +80,7 @@
     margin-left: 10px;
 }
 
+.form__editRoom,
 .form__createRoom,
 .form__join,
 .form__login {
@@ -81,4 +88,10 @@
     input {
         margin: 10px 0;
     }
+}
+
+.comment {
+    display: block;
+    padding: 10px;
+    border-top: 1px solid $gray;
 }

@@ -2,6 +2,7 @@ import User from "../Model/User";
 import bcrypt from "bcrypt";
 import Room from "../Model/Room";
 import Study from "../Model/Study";
+import Comment from "../Model/Comment";
 
 export const getLogin = (req, res) => {
     return res.render("login", { pageTitle: "로그인" });
@@ -140,4 +141,30 @@ export const postChangePassword = async (req, res) => {
         password: await bcrypt.hash(newPassword, 10),
     });
     return res.redirect(`/users/${id}`);
+}
+
+export const addComment = async (req, res) => {
+    const {
+        params: { roomId },
+        body: { content },
+        session: { user }
+    } = req;
+    if (!user) {
+        return res.sendStatus(403);
+    }
+    // Create Comment Document
+    const newComment = await Comment.create({
+        content,
+        author: user._id,
+        room: roomId,
+    });
+    // Update User Document
+    await User.updateOne({ _id: user._id }, {
+        $push: { comments: newComment._id }
+    });
+    // Update Room Document
+    await Room.updateOne({ _id: roomId }, {
+        $push: { comments: newComment._id }
+    });
+    return res.sendStatus(201);
 }

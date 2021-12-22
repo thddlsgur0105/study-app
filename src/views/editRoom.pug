@@ -1,22 +1,24 @@
 extends base.pug
 
 block content 
-    form(method="POST")
-        input(type="text", placeholder="제목", value=room.title, name="title", required)
-        textarea(cols="30", rows="10", name="content", placeholder="내용", required)=room.content
-        div(data-filtering=room.filtering)
-            //- javascript 활용해서 checked attribures 추가 (셋 중 하나는 반드시 선택되도록)
-            input(type="radio", id="toeic", name="filtering", value="toeic")
-            label(for="toeic") 토익
-            input(type="radio", id="official", name="filtering", value="official")
-            label(for="official") 공시
-            input(type="radio", id="self", name="filtering", value="self")
-            label(for="self") 자율
-        input(type="submit", value="편집하기")
-    each member in room.study.members
-        h4=member.username  
-    hr
-    each comment in room.comments 
-        h4=comment 
-    else 
-        h4 댓글이 없습니다.
+    .form-container.inner
+        form(method="POST").form.form__editRoom
+            input(type="text", placeholder="제목", value=room.title, name="title", required)
+            textarea.form__textarea(cols="30", rows="10", name="content", placeholder="내용", required)=room.content
+            .form__radio(data-filtering=room.filtering)
+                //- javascript 활용해서 checked attribures 추가 (셋 중 하나는 반드시 선택되도록)
+                input(type="radio", id="toeic", name="filtering", value="toeic")
+                label(for="toeic") 토익
+                input(type="radio", id="official", name="filtering", value="official")
+                label(for="official") 공시
+                input(type="radio", id="self", name="filtering", value="self")
+                label(for="self") 자율
+            input(type="submit", value="편집하기")
+        each member in room.study.members
+            .form__member
+                span=member.username  
+                span ❌
+        each comment in room.comments 
+            span.comment=comment 
+        else 
+            span.comment 댓글이 없습니다.

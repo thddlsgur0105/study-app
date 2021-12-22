@@ -1,5 +1,5 @@
 mixin roomPreview(room)
-    a(href=`/rooms/${room._id}`).room__preview 
+    a(href=`/rooms/${room._id}`).preview-card 
         span=room.title
         .room__description 
             small=room.filtering 

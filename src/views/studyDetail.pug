@@ -9,7 +9,7 @@ block content
     hr
     a(href=`${study._id}/posts/create`) 공부 기록 작성
     hr
-    ul 
+    ul.inner 
         each post in study.posts 
             +postPreview(post, study._id)
         else 
