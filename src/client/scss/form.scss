@@ -90,8 +90,35 @@
     }
 }
 
+/* Comment Section */
+
 .comment {
     display: block;
     padding: 10px;
     border-top: 1px solid $gray;
+}
+
+.comment-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    input[type=text] {
+        box-sizing: border-box;
+        padding: 10px;
+        width: 80%;
+        height: 45px;
+        outline: none;
+        font-size: larger;
+        border: 1px solid $gray;
+    }
+    button {
+        box-sizing: border-box;
+        padding: 10px;
+        width: 20%;
+        height: 45px;
+        outline: none;
+        font-size: larger;
+        border: 1px solid $gray;
+    }
 }

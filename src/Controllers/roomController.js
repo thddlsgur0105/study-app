@@ -60,7 +60,13 @@ export const postCreate = async (req, res) => {
 
 export const detail = async (req, res) => {
     const { id } = req.params;
-    const room = await Room.findById(id).populate("author").populate("study").populate("comments");
+    const room = await Room.findById(id).populate("author").populate("study").populate("comments").populate({
+        path: "comments",
+        populate: {
+            path: "author",
+            select: "username",
+        }
+    });
     return res.render("watchRoom", { pageTitle: `세부정보: ${room.title}`, room });
 }
 

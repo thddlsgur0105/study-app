@@ -4,7 +4,8 @@ const path = require("path");
 module.exports = {
     entry: {
         main: "./src/client/js/main.js",
-        commentSection: "./src/client/js/commentSection.js"
+        commentSection: "./src/client/js/commentSection.js",
+        joinSection: "./src/client/js/joinSection.js"
     },
     plugins: [new MiniCssExtractPlugin({
         filename: "css/styles.css"

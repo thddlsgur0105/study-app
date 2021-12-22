@@ -52,3 +52,24 @@ a {
         }
     }
 }
+
+.comment {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto 0px;
+    padding: 3px 15px;
+    font: inherit;
+    box-sizing: border-box;
+    background: none;
+    color: $black;
+    border: 1px solid $gray;
+    border-radius: 9999px;
+    .comment__content {
+        font-size: larger;
+    }
+    .comment__author {
+        font-size: smaller;
+    }
+}

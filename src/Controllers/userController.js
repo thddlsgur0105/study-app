@@ -166,5 +166,27 @@ export const addComment = async (req, res) => {
     await Room.updateOne({ _id: roomId }, {
         $push: { comments: newComment._id }
     });
+    return res.status(201).json({
+        author: user.username
+    });
+}
+
+export const joinUser = async (req, res) => {
+    const {
+        session: { user },
+        params: { roomId }
+    } = req;
+    if (!user) {
+        return res.sendStatus(403);
+    }
+    const room = await Room.findById(roomId);
+    // Update Study Document
+    await Study.findByIdAndUpdate(room.study, {
+        $push: { members: user._id }
+    });
+    // Update User Document
+    await User.findByIdAndUpdate(user._id, {
+        $push: { studies: room.study }
+    });
     return res.sendStatus(201);
 }
