@@ -9,54 +9,54 @@
 
 # Router
 
-## rootRouter --> __Done__ 
+1. rootRouter 
 
-[o] / -> Home -> Search 랑 Hashtag 로 검색하면 관련 room 모아보기
-[o] /login -> Login -> __form__
-[o] /join -> Join -> __form__
-[o] /logout -> Logout
-[o] /create -> Create Room -> __form__
+   *  */* -> Home
+   * */login* -> Login
+   * */join* -> Join
+   * */logout* -> Logout
+   * */create* -> Create Room
 
-## roomRouter --> __Done__
+2. roomRouter
 
-[o] /rooms/:id -> Watch Room
-[x] /rooms/:id/edit -> Edit Room -> __form__
-[x] /rooms/:id/delete -> Delete Room
+   * */rooms/:id* -> Watch Room
+   * */rooms/:id/edit* -> Edit Room
+   * */rooms/:id/delete* -> Delete Room
 
-## userRouter --> __Done__
+3. userRouter
 
-[x] /users/:id -> See User Profile
-[x] /users/:id/edit -> Edit My Profile -> __form__
-[x] /users/:id/delete -> Delete User
-[x] /users/:id/change-password -> Change Password -> __Done__
+   * */users/:id* -> See User Profile
+   * */users/:id/edit* -> Edit My Profile
+   * */users/:id/delete* -> Delete User
+   * */users/:id/change-password* -> Change Passwor
 
-## apiRouter --> __차후에 라우터 & 컨트롤러 만들기__
+4. apiRouter
 
-[o] /api/:id/join -> :id 인 Study 로 Join
-[x] /api/view -> views = views + 1
-[x] /api/users/:id/remove -> 특정 user remove
+    * */api/:id/join* -> :id 인 Study 로 Join
+    * */api/view* -> views = views + 1
+    * */api/users/:id/remove* -> 특정 user remove
 
-## studyRouter
+5. studyRouter
 
-[x] /studies/:id -> Watch my study room
+    * */studies/:id* -> Watch my study room
 
 ----------------------------------------------------------------
 
 ## Controller
 
-[o] / -> Room Controller
-[o] /login -> User Controller
-[o] /join -> User Controller
-[o] /logout -> User Controller
-[o] /create -> Room Controller
+   * */* -> Room Controller
+   * */login* -> User Controller
+   * */join* -> User Controller
+   * */logout* -> User Controller
+   * */create* -> Room Controller
 
-[o] /rooms/:id -> Room Controller
-[o] /rooms/:id/edit -> Room Controller
-[o] /rooms/:id/delete -> Room Controller
+   * */rooms/:id* -> Room Controller
+   * */rooms/:id/edit* -> Room Controller
+   * */rooms/:id/delete* -> Room Controller
 
-[o] /users/profile -> User Controller
-[o] /users/edit -> User Controller
-[o] /users/delete -> User Controller
+   * */users/profile* -> User Controller
+   * */users/edit* -> User Controller
+   * */users/delete* -> User Controller
 
 
 ----------------------------------------------------------------
@@ -115,7 +115,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 
 ----------------------------------------------------------------
 
-2. Login page --> __Done__
+2. Login page
 
 -> base.pug template 에서 anchor tag 로 /login 으로의 login btn
 -> GET method 로 /login 이동 -> template 통해 form 작성 -> POST method 로 /login 이동 -> form data 정보 user authentication
@@ -126,7 +126,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 ----------------------------------------------------------------
 
 
-3. Join page --> __Done__
+3. Join page
 
 -> base.pug template 에서 anchor tag 로 /join 으로의 join btn
 -> GET method 로 /join 이동 -> template 통해 form 작성 -> POST method 로 /join 이동 -> form data 정보 user authentication
@@ -136,7 +136,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 
 ----------------------------------------------------------------
 
-4. Log out --> __Done__
+4. Log out
 
 -> base.pug template 에서 anchor tag 로 /logout 으로의 logout btn
 -> GET method 로 /logout 이동 -> session destroy -> redirect /
@@ -145,7 +145,7 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 ----------------------------------------------------------------
 
 
-5. Create Room --> __Done__
+5. Create Room
 
 -> base.pug template 에서 anchor tag 로 /create 으로의 create btn
 -> GET method 로 /create 이동 -> templace 통해 form 작성 -> POST method 로 /create 이동 
