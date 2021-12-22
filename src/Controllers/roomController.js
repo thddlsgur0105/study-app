@@ -81,7 +81,7 @@ export const detail = async (req, res) => {
 
 export const getEdit = async (req, res) => {
     const { params: { id }, session: { user } } = req;
-    const room = await Room.findById(id).populate({
+    const room = await Room.findById(id).populate("comments").populate({
         path: "study",
         populate: "members",
     });

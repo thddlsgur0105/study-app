@@ -20,7 +20,7 @@ block content
                     span=member.username  
                     button.btn.delete__btn(data-id=member._id) ❌
         each comment in room.comments 
-            span.comment=comment 
+            span.comment=comment.content 
         else 
             span.comment 댓글이 없습니다.
 

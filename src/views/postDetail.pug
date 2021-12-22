@@ -8,5 +8,5 @@ block content
     h2=`총 공부 시간: ${post.totalTime}`
     hr
     if String(post.author) === String(loggedInUser._id)
-        a(href=`${post._id}/edit`) 기록 수정 
-        a(href=`${post._id}/remove`) 기록 삭제 
+        a.btn(href=`${post._id}/edit`) 기록 수정 
+        a.btn(href=`${post._id}/remove`) 기록 삭제 
