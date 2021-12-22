@@ -176,3 +176,15 @@ export const removeUser = async (req, res) => {
     }
     return res.sendStatus(200);
 }
+
+/* Study Controller */
+
+export const removeStudy = async (req, res) => {
+    const { targetStudy } = req.body;
+    const study = await Study.findById(targetStudy);
+    if (!study) {
+        return res.sendStatus(404);
+    }
+    // Update User Document
+    
+}

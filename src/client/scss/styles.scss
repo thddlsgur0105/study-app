@@ -36,6 +36,8 @@ button {
 }
 
 .btn {
+    display: inline-block;
+    box-sizing: border-box;
     margin-right: 5px;
     padding: 10px;
     background-color: $black;

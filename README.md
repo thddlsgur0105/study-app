@@ -211,3 +211,8 @@ Search 랑 Hashtag 로 검색하면 관련 room 모아보기
 -> webpack configuration
 -> wetube course webpack configuration 강의 듣고 넘어가는 걸로
 
+----------------------------------------------------------------
+
+## 미완 부분
+
+1. deleteStudy 

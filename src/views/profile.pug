@@ -8,7 +8,7 @@ block content
             if String(loggedInUser ? loggedInUser._id : null) === String(currentUser._id)
                 span.profile__name=`유저 이름: ${currentUser.name}`
                 span.profile__email=`이메일: ${currentUser.email}`
-                a(href=`${currentUser._id}/edit`)=`${currentUser.username}의 정보 수정`
+                a.btn(href=`${currentUser._id}/edit`)=`${currentUser.username}의 정보 수정`
         .profile__studies 
             span.profile__title 참여한 스터디
             each study in currentUser.studies 

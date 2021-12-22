@@ -7,6 +7,7 @@ module.exports = {
         commentSection: "./src/client/js/commentSection.js",
         apiSection: "./src/client/js/apiSection.js",
         deleteMember: "./src/client/js/deleteMember.js",
+        deleteStudy: "./src/client/js/deleteStudy.js",
     },
     plugins: [new MiniCssExtractPlugin({
         filename: "css/styles.css"

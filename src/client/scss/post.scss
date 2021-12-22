@@ -1,0 +1,16 @@
+.post__form {
+    flex-direction: column;
+    .post__name {
+        margin-bottom: 10px;
+    }
+    .post__container {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        input[type=time] {
+            box-sizing: border-box;
+            padding: 5px 10px;
+            border: 1px solid $gray;
+        }
+    }
+}

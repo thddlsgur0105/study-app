@@ -25,16 +25,15 @@
         input[type=text] {
             box-sizing: border-box;
             padding: 10px;
-            width: 80%;
+            width: 100%;
             outline: none;
-            border: none;
-            border-radius: 9999px;
+            border: 1px solid $gray;
         }
         
         input[type=text] + .form__btn {
             position: absolute;
             color: $black;
-            right: 50px;
+            right: 10px;
         }
         input[type=submit] {
             box-sizing: border-box;
@@ -57,9 +56,10 @@
         } 
     }
     .form__textarea {
+        box-sizing: border-box;
+        width: 100%;
         padding: 10px;
         border: 1px solid $gray;
-        border-radius: 20px;
     }
     .form__member {
         padding: 10px;
@@ -120,5 +120,28 @@
         outline: none;
         font-size: larger;
         border: 1px solid $gray;
+    }
+}
+
+/* Edit Form */
+
+.edit__form {
+    flex-direction: column;
+    input {
+        margin-bottom: 10px;
+    }
+}
+
+.edit__btns {
+    margin: 10px 0;
+}
+
+.remove__btns {
+    width: 85%;
+    margin: 10px auto;
+    padding: 10px 0;
+    border-top: 2px solid $gray;
+    button {
+        margin-left: 10px;
     }
 }

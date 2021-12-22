@@ -1,16 +1,19 @@
 extends base.pug
 
 block content 
-    form(method="POST")
-        input(type="text", placeholder="기록 이름을 작성하세요.", name="title", required)
-        hr
-        label(for="studyStart") 공부 시작 시간 
-        input(id="studyStart", type="time", name="studyStart")
-        label(for="studyEnd") 공부 종료 시간
-        input(id="studyEnd", type="time", name="studyEnd")
-        hr
-        label(for="breakStart") 쉬는 시간 시작 
-        input(id="breakStart", type="time", name="breakStart")
-        label(for="breakEnd") 쉬는 시간 종료 
-        input(id="breakEnd", type="time", name="breakEnd")
-        input(type="submit", value="기록하기")
+    .form-container 
+        form.form.post__form(method="POST")
+            input.post__name(type="text", placeholder="기록 이름을 작성하세요.", name="title", required)
+            .post__container
+                label(for="studyStart") 공부 시작 시간 
+                input(id="studyStart", type="time", name="studyStart")
+            .post__container
+                label(for="studyEnd") 공부 종료 시간 
+                input(id="studyEnd", type="time", name="studyEnd")
+            .post__container
+                label(for="breakStart") 쉬는 시간 시작 
+                input(id="breakStart", type="time", name="breakStart")
+            .post__container
+                label(for="breakEnd") 쉬는 시간 종료 
+                input(id="breakEnd", type="time", name="breakEnd")
+            input(type="submit", value="기록하기")
